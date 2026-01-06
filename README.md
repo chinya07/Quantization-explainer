@@ -14,13 +14,14 @@ This tool helps you visualize:
 *   **The Math**: How Scale ($S$) and Zero-Point ($Z$) are calculated in real-time.
 *   **The Trade-off**: Symmetric vs. Asymmetric quantization.
 
-## ✨ Features
+### ✨ Key Features
+- **Interactive Number Line**: Drag real values and see them snap to integer buckets.
+- **Bell Curve Visual**: See how the Input Range clips or fits a standard data distribution (checking against weights/activations).
+- **Real-world Presets**: One-click setup for common scenarios like **Weights** (Symmetric) or **ReLU** (Asymmetric).
+- **Quantization Microscope**: A zoomed-in view showing the exact error (red spring) as the distance between the real value and the nearest bucket.
+- **Dynamic Formulas**: See Scale (S) and Zero-Point (Z) calculated in real-time.
+- **Visual Explanations**: Tooltips and animations explain concepts like "Clipping" and "Rounding".
 
-*   **Interactive Number Line**: Drag the input value and watch it "snap" to the nearest quantized integer bucket.
-*   **Live Formula**: Watch the equation $q = S(r - Z)$ update instantly as you change range parameters.
-*   **Symmetric & Asymmetric Modes**: Toggle between modes to see how Zero-Point ($Z$) shifts to accommodate different input ranges.
-*   **Visual Grid**: Faint grid lines show exactly where the "rounding boundaries" are.
-*   **Educational Tooltips**: Built-in explanations for concepts like Clipping and Input Range.
 
 ## 🧮 The Math Explained
 

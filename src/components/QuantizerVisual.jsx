@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DefinitionsPanel from './DefinitionsPanel';
+import MicroscopeVisual from './MicroscopeVisual';
 
 const QuantizerVisual = () => {
     // State for Real Range
@@ -95,6 +96,38 @@ const QuantizerVisual = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 {/* Controls */}
                 <div className="bg-gray-800/50 p-5 rounded-lg border border-gray-700">
+
+                    {/* Quick Presets */}
+                    <div className="mb-6 pb-6 border-b border-gray-700">
+                        <h3 className="text-sm uppercase tracking-wide text-gray-400 mb-3 font-semibold">Real-world Presets</h3>
+                        <div className="grid grid-cols-2 gap-3">
+                            <button
+                                onClick={() => {
+                                    setMode('symmetric');
+                                    setMinVal(-3.5);
+                                    setMaxVal(3.5);
+                                    setInputValue(0.5);
+                                }}
+                                className="px-3 py-2 bg-gray-700 hover:bg-blue-600 hover:text-white text-gray-300 rounded text-xs font-bold transition-colors flex flex-col items-center gap-1 group"
+                            >
+                                <span>Weights</span>
+                                <span className="text-[10px] font-normal text-gray-400 group-hover:text-blue-200">[-3.5, 3.5] Symmetric</span>
+                            </button>
+                            <button
+                                onClick={() => {
+                                    setMode('asymmetric');
+                                    setMinVal(0);
+                                    setMaxVal(6);
+                                    setInputValue(3.0);
+                                }}
+                                className="px-3 py-2 bg-gray-700 hover:bg-blue-600 hover:text-white text-gray-300 rounded text-xs font-bold transition-colors flex flex-col items-center gap-1 group"
+                            >
+                                <span>ReLU Activations</span>
+                                <span className="text-[10px] font-normal text-gray-400 group-hover:text-blue-200">[0, 6.0] Asymmetric</span>
+                            </button>
+                        </div>
+                    </div>
+
                     <div className="flex items-center justify-between mb-4 group relative">
                         <h3 className="text-sm uppercase tracking-wide text-gray-400 font-semibold">Input Range</h3>
                         <div className="relative">
@@ -350,6 +383,15 @@ const QuantizerVisual = () => {
 
             </div>
 
+
+            {/* Error visualization */}
+            <MicroscopeVisual
+                minVal={minVal}
+                maxVal={maxVal}
+                inputVal={inputValue}
+                scale={scale}
+                zeroPoint={zeroPoint}
+            />
 
             <DefinitionsPanel mode={mode} />
         </div >
