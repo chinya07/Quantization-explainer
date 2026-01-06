@@ -50,6 +50,26 @@ const QuantizerVisual = () => {
     // Quantization Error
     const error = dequantized - inputValue;
 
+    // Generate Bell Curve Path (Standard Normal Dist: mu=0, sigma=1)
+    const bellCurvePath = (() => {
+        const points = [];
+        const steps = 60;
+        for (let i = 0; i <= steps; i++) {
+            const rangePct = i / steps;
+            // Map view range (0..1) to Real Value x
+            const x = minVal + rangePct * (maxVal - minVal);
+            // Gaussian function: e^(-x^2 / 2) -> Peak at 1.0
+            const y = Math.exp(-0.5 * x * x);
+            // Map y to SVG height (0 is top, 100 is bottom)
+            // We want peak (y=1) to be at 5% from top
+            // Base (y=0) to be at 100% (bottom)
+            const plotY = 100 - (y * 95);
+            points.push(`${rangePct * 100},${plotY}`);
+        }
+        // Close the shape for fill
+        return `M 0,100 L ${points.join(' L ')} L 100,100 Z`;
+    })();
+
     return (
         <div className="bg-gray-900 border border-gray-700 rounded-xl p-6 shadow-2xl max-w-4xl mx-auto my-8 font-sans">
             <div className="flex justify-between items-center mb-8">
@@ -184,6 +204,17 @@ const QuantizerVisual = () => {
                 {/* Real Axis Container */}
                 <div className="relative mx-10 h-16 mb-8">
                     <span className="absolute -top-6 left-0 text-xs font-bold text-gray-500 uppercase tracking-widest">FP32 Input Space</span>
+
+                    {/* Bell Curve Background */}
+                    <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="bellGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" />
+                                <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
+                            </linearGradient>
+                        </defs>
+                        <path d={bellCurvePath} fill="url(#bellGradient)" stroke="#3b82f6" strokeWidth="0.5" strokeOpacity="0.5" />
+                    </svg>
 
                     {/* Axis Line */}
                     <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-blue-900 to-blue-500 rounded z-0"></div>
