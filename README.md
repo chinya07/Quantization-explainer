@@ -2,8 +2,8 @@
 
 An interactive, animated educational tool built with **React** to demystify how Neural Networks are quantized from Floating Point (FP32) to Integers (INT8).
 
-![Quantizer Preview](https://via.placeholder.com/800x400?text=Quantization+Visualizer+Preview)
-*(Replace with a real screenshot after pushing!)*
+![Quantizer Preview](src/app-ss.png)
+
 
 ## 🚀 What is this?
 
