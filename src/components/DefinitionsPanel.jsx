@@ -12,7 +12,7 @@ const Fraction = ({ num, den }) => (
 const DefinitionsPanel = ({ mode }) => {
     return (
         <>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 text-left">
                 {/* Scale Definition */}
                 <motion.div
                     className="bg-gray-800 p-5 rounded-lg border-t-4 border-blue-500 shadow-lg"

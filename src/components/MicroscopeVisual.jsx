@@ -32,7 +32,7 @@ const MicroscopeVisual = ({ minVal, maxVal, inputVal, scale, zeroPoint }) => {
     const error = snapppedVal - inputVal;
 
     return (
-        <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 mt-8 relative overflow-hidden select-none">
+        <div className="bg-gray-800 p-4 md:p-6 rounded-lg border border-gray-700 mt-8 relative overflow-hidden select-none">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
                 <div className="flex items-center gap-2 group relative cursor-help">
                     <h3 className="text-sm uppercase tracking-wide text-gray-400 font-semibold flex items-center gap-2">

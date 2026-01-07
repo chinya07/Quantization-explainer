@@ -72,10 +72,10 @@ const QuantizerVisual = () => {
     })();
 
     return (
-        <div className="bg-gray-900 border border-gray-700 rounded-xl p-6 shadow-2xl max-w-4xl mx-auto my-8 font-sans">
-            <div className="flex justify-between items-center mb-8">
-                <h2 className="text-2xl font-bold text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
-                    Quantization Visualizer
+        <div className="bg-gray-900 border border-gray-700 rounded-xl p-4 md:p-6 shadow-2xl max-w-4xl mx-auto my-4 md:my-8 font-sans">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-6 md:mb-8 gap-4 md:gap-0">
+                <h2 className="text-xl md:text-2xl font-bold text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
+                    QuantLens
                 </h2>
                 <div className="flex space-x-2 bg-gray-800 p-1 rounded-lg">
                     {['symmetric', 'asymmetric'].map((m) => (
@@ -232,10 +232,10 @@ const QuantizerVisual = () => {
             </div>
 
             {/* Visual Number Line */}
-            <div className="bg-gray-800 rounded-lg p-8 relative h-64 border border-gray-700 overflow-hidden select-none">
+            <div className="bg-gray-800 rounded-lg p-4 md:p-8 relative h-64 border border-gray-700 overflow-hidden select-none">
 
                 {/* Real Axis Container */}
-                <div className="relative mx-10 h-16 mb-8">
+                <div className="relative mx-4 md:mx-10 h-16 mb-8">
                     <span className="absolute -top-6 left-0 text-xs font-bold text-gray-500 uppercase tracking-widest">FP32 Input Space</span>
 
                     {/* Bell Curve Background */}
@@ -311,7 +311,7 @@ const QuantizerVisual = () => {
                 </div>
 
                 {/* Quantized Axis Container */}
-                <div className="relative mx-10 h-16">
+                <div className="relative mx-4 md:mx-10 h-16">
                     <span className="absolute -bottom-6 left-0 text-xs font-bold text-gray-500 uppercase tracking-widest">INT8 Output Space</span>
 
                     <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-purple-900 to-purple-500 rounded"></div>
