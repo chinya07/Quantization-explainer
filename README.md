@@ -1,4 +1,4 @@
-# 🧠 Neural Network Quantization Visualizer
+# 🧠 QuantLens: Neural Network Quantization Visualizer
 
 An interactive, animated educational tool built with **React** to demystify how Neural Networks are quantized from Floating Point (FP32) to Integers (INT8).
 
