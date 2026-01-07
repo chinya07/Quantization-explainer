@@ -48,6 +48,7 @@ const MicroscopeVisual = ({ minVal, maxVal, inputVal, scale, zeroPoint }) => {
                         <p className="mb-2">It's the precision we lose when forcing a smooth real number into a fixed integer bucket.</p>
                         <p>Think of it like rounding currency: <br /> Real <span className="text-pink-400">$10.43</span> &rarr; Bucket <span className="text-emerald-400">$10.00</span>.</p>
                         <p className="mt-2 border-t border-gray-700 pt-2 text-gray-400">Error = Distance to nearest Green Line.</p>
+                        <p className="mt-1 text-emerald-400">Bucket Val = The exact real value of the Green Line (center of the bin).</p>
                     </div>
                 </div>
 
