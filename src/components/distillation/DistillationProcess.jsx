@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import goldenRetriever from '../../assets/golden_retriever.jpg';
 
 const DistillationProcess = () => {
     const [step, setStep] = useState(0);
@@ -30,8 +31,8 @@ const DistillationProcess = () => {
                 How the Student learns from two masters: The <span className="text-yellow-400">Teacher's Wisdom</span> and the <span className="text-green-400">Real Truth</span>.
             </p>
 
-            {/* --- VISUALIZATION AREA --- */}
-            <div className="relative h-[400px] w-full bg-gray-950 rounded-xl border border-gray-800 overflow-hidden select-none">
+            {/* --- VISUALIZATION AREA (Fixed 900px Width) --- */}
+            <div className="relative h-[400px] w-[900px] bg-gray-950 rounded-xl border border-gray-800 overflow-hidden select-none shadow-inner mx-auto overflow-x-auto pb-4">
 
                 {/* 1. INPUT (Left) */}
                 <div className="absolute left-10 top-1/2 -translate-y-1/2 flex flex-col items-center z-10">
@@ -40,7 +41,7 @@ const DistillationProcess = () => {
                         className="w-16 h-16 rounded-lg overflow-hidden border-2 border-gray-600 shadow-lg"
                     >
                         <img
-                            src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=150&q=80"
+                            src={goldenRetriever}
                             alt="Golden Retriever"
                             className="w-full h-full object-cover"
                         />
@@ -50,7 +51,7 @@ const DistillationProcess = () => {
                 {/* 2. NETWORKS (Center Column) */}
 
                 {/* TEACHER (Top) */}
-                <div className="absolute left-1/3 top-16 flex flex-col items-center z-10">
+                <div className="absolute left-[300px] top-16 flex flex-col items-center z-10">
                     <div className="flex items-center gap-2 mb-2">
                         <span className="text-xs font-bold text-yellow-500 uppercase tracking-widest">Teacher</span>
                         <span className="text-[10px] bg-gray-800 px-1 rounded text-gray-400 border border-gray-700">FROZEN 🥶</span>
@@ -85,7 +86,7 @@ const DistillationProcess = () => {
                 </div>
 
                 {/* STUDENT (Bottom) */}
-                <div className="absolute left-1/3 bottom-16 flex flex-col items-center z-10">
+                <div className="absolute left-[300px] bottom-16 flex flex-col items-center z-10">
                     <div className="flex items-center gap-2 mb-2">
                         <span className="text-xs font-bold text-green-500 uppercase tracking-widest">Student</span>
                         <span className="text-[10px] bg-green-900/30 px-1 rounded text-green-400 border border-green-800">TRAINABLE 🧠</span>
@@ -119,7 +120,7 @@ const DistillationProcess = () => {
                 {/* 3. OUTPUTS & LOSS (Right) */}
 
                 {/* Soft Targets */}
-                <div className="absolute left-[60%] top-20 flex flex-col items-center">
+                <div className="absolute left-[560px] top-[110px] -translate-y-1/2 flex flex-col items-start pl-4">
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: step >= 1 ? 1 : 0.2, x: step === 1 ? [0, 5, 0] : 0 }}
@@ -131,7 +132,7 @@ const DistillationProcess = () => {
                 </div>
 
                 {/* Student Preds */}
-                <div className="absolute left-[60%] bottom-20 flex flex-col items-center">
+                <div className="absolute left-[560px] top-[300px] -translate-y-1/2 flex flex-col items-start pl-4">
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: step >= 1 ? 1 : 0.2 }}
@@ -143,7 +144,7 @@ const DistillationProcess = () => {
                 </div>
 
                 {/* TOTAL LOSS (Far Right) */}
-                <div className="absolute right-16 top-1/2 -translate-y-1/2 flex flex-col items-center z-10 w-32">
+                <div className="absolute right-2 top-1/2 -translate-y-1/2 flex flex-col items-center z-10 w-32">
                     <motion.div
                         animate={{
                             scale: step === 2 ? 1.1 : 1,
@@ -195,7 +196,7 @@ const DistillationProcess = () => {
 
                     {/* Teacher -> Soft Targets */}
                     <motion.path
-                        d="M 370 110 L 580 110"
+                        d="M 370 110 L 560 110"
                         fill="none"
                         stroke={step >= 1 ? "#eab308" : "#4b5563"}
                         strokeDasharray="4 4"
@@ -206,7 +207,7 @@ const DistillationProcess = () => {
 
                     {/* Student -> Preds */}
                     <motion.path
-                        d="M 370 300 L 580 300"
+                        d="M 370 300 L 560 300"
                         fill="none"
                         stroke={step >= 1 ? "#22c55e" : "#4b5563"}
                         strokeDasharray="4 4"
@@ -217,7 +218,7 @@ const DistillationProcess = () => {
 
                     {/* Soft Targets -> Loss */}
                     <motion.path
-                        d="M 700 110 C 750 110, 750 180, 810 180"
+                        d="M 640 110 C 750 110, 750 180, 780 180"
                         fill="none"
                         stroke={step >= 2 ? "#eab308" : "#4b5563"}
                         strokeWidth="2"
@@ -225,28 +226,11 @@ const DistillationProcess = () => {
 
                     {/* Preds -> Loss */}
                     <motion.path
-                        d="M 700 300 C 750 300, 750 220, 810 220"
+                        d="M 640 300 C 750 300, 750 220, 780 220"
                         fill="none"
                         stroke={step >= 2 ? "#22c55e" : "#4b5563"}
                         strokeWidth="2"
                     />
-
-                    {/* BACKPROP (Loss -> Student) */}
-                    <AnimatePresence>
-                        {step === 3 && (
-                            <motion.path
-                                initial={{ pathLength: 0, opacity: 0 }}
-                                animate={{ pathLength: 1, opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                d="M 810 240 C 700 350, 500 350, 390 330"
-                                fill="none"
-                                stroke="#ef4444"
-                                strokeWidth="3"
-                                strokeDasharray="5 5"
-                                markerEnd="url(#arrowhead-red)"
-                            />
-                        )}
-                    </AnimatePresence>
 
                 </svg>
 
